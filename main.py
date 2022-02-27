@@ -1,6 +1,7 @@
 import pyttsx3  # importing a text to speach library
 import speech_recognition as sr
 import datetime  # importing module for getting the date and time
+import wikipedia  # importing the wikipedia module
 
 # Factory function to get reference to pyttsx3 and as I am on Mac, I will NSSpeachSynthesizer TTS engine.
 engine = pyttsx3.init('nsss')
@@ -63,10 +64,6 @@ This function takes in my command through microphone and returns the command as 
     try:
         print("Recognising.....")
         query = r.recognize_google(audio, language="en-UK")  # uses the google API to convert the audio to text.
-        if query == "how are you Jarvis":
-            speak("I am totally fine Sir, I hope you are really doing well")
-        if query == "Jarvis tell about yourself":
-            JarvisInfo()
         print(f"Your command Sir : {query}\n")
     except Exception as e:  # if jarvis is unable to understand my command throw the following message
         print("Sir I'm sorry, but can you please repeat what you just said ....")
@@ -77,6 +74,11 @@ This function takes in my command through microphone and returns the command as 
 # Main function (so that speak function in the main function executes only in this python file).
 if __name__ == '__main__':
     greeting()
-    takeCommand()
+    while True:
+        query = takeCommand().lower()
 
-
+        # Logic for executing tasks based on the query
+        if 'wikipedia' in query:
+            speak("Sir looking for you, just hold on ....")  # Jarvis searching in the wikipedia
+            query = query.replace("wikipedia", "")  # replacing the text "wikipedia" with blank
+            results = wikipedia.summary(query, sentence=2)
