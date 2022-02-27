@@ -79,6 +79,9 @@ if __name__ == '__main__':
 
         # Logic for executing tasks based on the query
         if 'wikipedia' in query:
-            speak("Sir looking for you, just hold on ....")  # Jarvis searching in the wikipedia
-            query = query.replace("wikipedia", "")  # replacing the text "wikipedia" with blank
-            results = wikipedia.summary(query, sentence=2)
+            speak("Yes Sir, wikipedia is opened. What do you want to know ?")  # Jarvis searching in the wikipedia
+            query = takeCommand().lower()
+            query = query.replace("I want to know about", "")
+            results = wikipedia.summary(query, sentences=2)    # summarizes the info into 2 sentences
+            print(results)
+            speak(f"Sir according to wikipedia, {results}")
