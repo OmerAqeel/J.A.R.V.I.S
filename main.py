@@ -65,6 +65,8 @@ This function takes in my command through microphone and returns the command as 
         query = r.recognize_google(audio, language="en-UK")  # uses the google API to convert the audio to text.
         if query == "how are you Jarvis":
             speak("I am totally fine Sir, I hope you are really doing well")
+        if query == "Jarvis tell about yourself":
+            JarvisInfo()
         print(f"Your command Sir : {query}\n")
     except Exception as e:  # if jarvis is unable to understand my command throw the following message
         print("Sir I'm sorry, but can you please repeat what you just said ....")
@@ -76,5 +78,5 @@ This function takes in my command through microphone and returns the command as 
 if __name__ == '__main__':
     greeting()
     takeCommand()
-    while x != "done":
-        takeCommand()
+
+
