@@ -115,11 +115,14 @@ if __name__ == '__main__':
             print(results)  # prints the wiki results about the anything I have asked jarvis for.
             speak(f"Sir according to wikipedia, {results}")
         elif "open youtube" in query:
-            speak(f"Of course Sir, your command is my wish ! {webbrowser.open(youtube)}")
+            speak("Of course Sir, your command is my wish ! ")
+            webbrowser.open(youtube)
         elif "google" in query:
-            speak(f"Opening google for you sir. {webbrowser.open(google)}")
+            speak(f"Opening google for you sir.")
+            webbrowser.open(google)
         elif "resources" in query:
-            speak(f"Opening all the resources for you sir. {openResources()}")
+            speak(f"Opening all the resources for you sir.")
+            openResources()
         elif "time" in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
