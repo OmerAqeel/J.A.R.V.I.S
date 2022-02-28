@@ -1,0 +1,1 @@
+jarvisCloseCommands = ["shut down", "ok bye", "close", "ok jarvis see you later"]

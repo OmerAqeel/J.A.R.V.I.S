@@ -8,6 +8,7 @@ from Bots import *
 from Links import *
 from personal import *
 from Reminders import *
+from shuttingDown import jarvisCloseCommands
 
 # Factory function to get reference to pyttsx3 and as I am on Mac, I will NSSpeachSynthesizer TTS engine.
 engine = pyttsx3.init('nsss')
@@ -106,6 +107,9 @@ if __name__ == '__main__':
                 break
             else:
                 pass
+        if query in jarvisCloseCommands:                #Commanding Jarvis to stop running.
+            speak("Ok sir, shutting down. I'll see you later, have a great day")
+            break
         if 'wikipedia' in query:
             speak(
                 "Yes Sir, wikipedia is opened now. What exactly you want me to look for?")  # Jarvis searching in the wikipedia
