@@ -1,1 +1,0 @@
-Reminders = "First, you have to complete the lab sheet 3 part 2. Second, you need to get the bot fixed that is being used to log you in the uni portal"
