@@ -9,8 +9,6 @@ from Links import *
 from personal import *
 from Reminders import *
 
-
-
 # Factory function to get reference to pyttsx3 and as I am on Mac, I will NSSpeachSynthesizer TTS engine.
 engine = pyttsx3.init('nsss')
 # outputs the voices available in the computer.
@@ -44,7 +42,7 @@ This function tells the important info about Jarvis when called.
 
 def greeting():
     """
-Jarvis needs to greet me according to the right time.
+Jarvis needs to greet me according to the right time. Also reminds me of the reminders
     """
     hour = int(datetime.datetime.now().hour)
     if 5 <= hour < 12:
@@ -56,6 +54,9 @@ Jarvis needs to greet me according to the right time.
     elif 20 <= hour:
         speak(" Sir its night time, please take rest.")
     speak("How may I help you Sir?")
+    if num_Reminders >= 5:  # If I have typed in more than 5 reminders or 5 for myself in the, Jarvis will let me know about it.
+        speak(f"By the way sir, you have a really busy schedule today. I have {num_Reminders} reminders for you. Let me remind them to you sir.")
+        speak(f"{readReminders}")
 
 
 x = "not done"
@@ -105,7 +106,8 @@ if __name__ == '__main__':
             else:
                 pass
         if 'wikipedia' in query:
-            speak("Yes Sir, wikipedia is opened now. What exactly you want me to look for?")  # Jarvis searching in the wikipedia
+            speak(
+                "Yes Sir, wikipedia is opened now. What exactly you want me to look for?")  # Jarvis searching in the wikipedia
             query = takeCommand().lower()
             query = query.replace("look for", "")
             results = wikipedia.summary(query, sentences=2)  # summarizes the info into 2 sentences
@@ -121,8 +123,9 @@ if __name__ == '__main__':
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
         elif "reminders" in query:
-            if Reminders != "":
-                speak(f"Yes sir, {Reminders}")
+            if num_Reminders != 0 and num_Reminders < 5:
+                speak(f"Yes sir, you have {num_Reminders} reminders.")
+                speak(f"{readReminders}")
             else:
                 speak("No sir, there is nothing for you in the reminders.")
         elif "university portal" in query:
@@ -133,4 +136,3 @@ if __name__ == '__main__':
             elif "yes" in query:
                 speak("Here you go sir ")
                 runUniversityBot(usernameStr, passwordStr)
-
