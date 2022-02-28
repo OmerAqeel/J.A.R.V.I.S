@@ -54,7 +54,7 @@ Jarvis needs to greet me according to the right time. Also reminds me of the rem
     elif 20 <= hour:
         speak(" Sir its night time, please take rest.")
     speak("How may I help you Sir?")
-    if num_Reminders >= 5:  # If I have typed in more than 5 reminders or 5 for myself in the, Jarvis will let me know about it.
+    if num_Reminders >= 5:  # If I have typed in more than 5 reminders or 5 for myself in the text file, Jarvis will let me know about it.
         speak(f"By the way sir, you have a really busy schedule today. I have {num_Reminders} reminders for you. Let me remind them to you sir.")
         speak(f"{readReminders}")
 
