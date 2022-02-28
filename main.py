@@ -34,7 +34,7 @@ def JarvisInfo():
 This function tells the important info about Jarvis when called.
     """
     speak(
-        f"Hi {person}, I am Jarvis. I am a personal Assistant of Mr Omer Aqeel. He has programmed me to receive his commands, "
+        "Hi, I am Jarvis. I am a personal Assistant of Mr Omer Aqeel. He has programmed me to receive his commands, "
         "complete his small tasks, give important information, remind him about his daily task that he has set for "
         "himself. I also manage his whatsapp messages, his emails etc. Mr "
         "Omer has other ideas in his mind for me, which I'm really excited for. Anyways it was nice meeting you, "
@@ -98,7 +98,6 @@ if __name__ == '__main__':
 
         # Logic for executing tasks based on the query
         if "yourself" in query:
-            person = query.replace("jarvis tell about yourself to", "")    #Person is the human to whom jarvis will introduce itself. This variable goes back into the JarvisInfo function
             JarvisInfo()
             speak("Sir if that was it, do you want me to leave ?")
             query = takeCommand().lower()
