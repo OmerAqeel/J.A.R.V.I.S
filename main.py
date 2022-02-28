@@ -4,9 +4,10 @@ import datetime  # importing module for getting the date and time
 import wikipedia  # importing the wikipedia module
 import webbrowser  # to open any website on the browser
 
-from Bots import runUniversityBot
+from Bots import *
 from Links import *
 from personal import *
+from Reminders import *
 
 
 
@@ -119,6 +120,11 @@ if __name__ == '__main__':
         elif "time" in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
+        elif "reminders" in query:
+            if Reminders != "":
+                speak(f"Yes sir, {Reminders}")
+            else:
+                speak("No sir, there is nothing for you in the reminders.")
         elif "university portal" in query:
             speak("Of course Sir, do you want me to log in for you ?")
             query = takeCommand().lower()
