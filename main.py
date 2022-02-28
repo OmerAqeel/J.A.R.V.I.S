@@ -4,6 +4,12 @@ import datetime  # importing module for getting the date and time
 import wikipedia  # importing the wikipedia module
 import webbrowser  # to open any website on the browser
 
+from Bots import runUniversityBot
+from Links import *
+from personal import *
+
+
+
 # Factory function to get reference to pyttsx3 and as I am on Mac, I will NSSpeachSynthesizer TTS engine.
 engine = pyttsx3.init('nsss')
 # outputs the voices available in the computer.
@@ -30,7 +36,9 @@ This function tells the important info about Jarvis when called.
     """
     speak(
         "Hi, I am Jarvis. I am a personal Assistant of Mr Omer Aqeel. He has programmed me to receive his commands, "
-        "complete his small tasks, give important information.")
+        "complete his small tasks, give important information. I manage his whatsapp messages, his emails etc. Mr "
+        "Omer has other ideas in his mind for me, which I'm really excited for. Anyways it was nice meeting you, "
+        "see you next time!")
 
 
 def greeting():
@@ -44,9 +52,9 @@ Jarvis needs to greet me according to the right time.
         speak(" A very Good Afternoon Mr Omer !")
     elif 16 <= hour <= 20:
         speak(" A very Good Evening Mr Omer !")
-    elif 20 <= hour <= 5:
+    elif 20 <= hour:
         speak(" Sir its night time, please take rest.")
-    speak("How can I help you Sir ..... ")
+    speak("How may I help you Sir?")
 
 
 x = "not done"
@@ -64,12 +72,19 @@ This function takes in my command through microphone and returns the command as 
 
     try:
         print("Recognising.....")
-        query = r.recognize_google(audio, language="en-UK")  # uses the google API to convert the audio to text.
+        query = r.recognize_google(audio, language="en-IN")  # uses the google API to convert the audio to text.
         print(f"Your command Sir : {query}\n")
     except Exception as e:  # if jarvis is unable to understand my command throw the following message
         print("Sir I'm sorry, but can you please repeat what you just said ....")
         return "None"
     return query
+
+
+def openResources():
+    webbrowser.open(geeksForgeeks)
+    webbrowser.open(stackOverflow)
+    webbrowser.open(youtube)
+    webbrowser.open(W3schools)
 
 
 # Main function (so that speak function in the main function executes only in this python file).
@@ -79,23 +94,37 @@ if __name__ == '__main__':
         query = takeCommand().lower()
 
         # Logic for executing tasks based on the query
-        if 'wikipedia' in query:
-            speak("Yes Sir, wikipedia is opened. What do you want to know ?")  # Jarvis searching in the wikipedia
+        if "yourself" in query:
+            JarvisInfo()
+            speak("Sir if that was it, do you want me to leave ?")
             query = takeCommand().lower()
-            query = query.replace("I want to know about", "")
+            if "yes" in query:
+                speak("Alright sir! Have a good day.")
+                break
+            else:
+                pass
+        if 'wikipedia' in query:
+            speak("Yes Sir, wikipedia is opened now. What exactly you want me to look for?")  # Jarvis searching in the wikipedia
+            query = takeCommand().lower()
+            query = query.replace("look for", "")
             results = wikipedia.summary(query, sentences=2)  # summarizes the info into 2 sentences
             print(results)  # prints the wiki results about the anything I have asked jarvis for.
             speak(f"Sir according to wikipedia, {results}")
         elif "open youtube" in query:
-            speak("Of course Sir, your command is my wish !")
-            webbrowser.open("https://www.youtube.com")
+            speak(f"Of course Sir, your command is my wish ! {webbrowser.open(youtube)}")
+        elif "google" in query:
+            speak(f"Opening google for you sir. {webbrowser.open(google)}")
+        elif "resources" in query:
+            speak(f"Opening all the resources for you sir. {openResources()}")
+        elif "time" in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"Sir, the time is {strTime}")
         elif "university portal" in query:
-            speak("Of course Sir, your command is my wish !")
-            webbrowser.open(
-                "https://login.navigate.navitas.com/ENTERPRISE/index/login?SAMLRequest"
-                "=fVPLbtswELznKwLdbT0i2zVhCXCdPgy4tmCrPfTGUOuGgESy3FXi%2Fn1JSWmcohUvApYzszPL1Qp5Uxu2bulRHeFnC0g3t"
-                "%2B5cmloh6y6zoLWKaY4SmeINICPBTusvO5ZMI2asJi10HfxFG2dxRLAktepp2%2FssOOw%2F7A6ftvt5HMcwv3uIovOMp8vZ"
-                "%2FBy%2F4xUkszSaJ8u7NF0s4mUV8575DSw6mSxwqoMWYgtbhcQVuXKUJJMomSSLMl6yNGVJ%2FL3HFYPx91JVUv0Y9"
-                "%2FvQg5B9LstiUhxOZS"
-                "%2Byfsmx0QrbBuwJ7JMU8PW4y4JHIoMsDPlF4lTxJ0kcp0I3ITemloJ7XuhnFYqeHeSd6MrXWJfD5v8TWYXXqFeeYXvnfntfaNfiV1f356O2DafxkL4iq8m5gzLjJ4sEioI%2FKuu61s8bC5wgC8i2znHv423XN3aGrYKq2zE3J4IL3W50Y7iV6J8OLlzQkP01%2FzV8U7uFOcI5H90pwYTHuXLhPs%2FaVv6NQbjepeUKjbY0jO2f4r3rcMR2fvNyff3D5L8B",
-                )
+            speak("Of course Sir, do you want me to log in for you ?")
+            query = takeCommand().lower()
+            if "no" in query:
+                webbrowser.open(university)
+            elif "yes" in query:
+                speak("Here you go sir ")
+                runUniversityBot(usernameStr, passwordStr)
+
