@@ -1,0 +1,5 @@
+
+mpython:S117"VRename this local variable "logIn" to match the regular expression ^[_a-z][a-z0-9_]*$.(§·˜â
+npython:S117"WRename this parameter "passwordStr" to match the regular expression ^[_a-z][a-z0-9_]*$.(ì¹Éœ
+npython:S117"WRename this parameter "usernameStr" to match the regular expression ^[_a-z][a-z0-9_]*$.(ì¹Éœ
+npython:S1542"VRename function "runUniversityBot" to match the regular expression ^[a-z_][a-z0-9_]*$.(ì¹Éœ
