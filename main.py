@@ -8,7 +8,7 @@ from Bots import *
 from Links import *
 from personal import *
 from Reminders import *
-from shuttingDown import jarvisCloseCommands
+from possibleCommands import jarvisCloseCommands
 
 # Factory function to get reference to pyttsx3 and as I am on Mac, I will NSSpeachSynthesizer TTS engine.
 engine = pyttsx3.init('nsss')
