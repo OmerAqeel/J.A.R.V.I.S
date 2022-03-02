@@ -1,0 +1,12 @@
+
+_python:S2208	"GImport only needed names or import the module and then use its members.(²Îã¥
+dpython:S2208
+"GImport only needed names or import the module and then use its members.(Ÿ£Ó•şÿÿÿÿ
+dpython:S2208"GImport only needed names or import the module and then use its members.(×¤òşÿÿÿÿ
+_python:S2208"GImport only needed names or import the module and then use its members.(…‚ÜÍ
+_python:S2208"GImport only needed names or import the module and then use its members.(‡ÍİÏ
+gpython:S1542$"PRename function "JarvisInfo" to match the regular expression ^[a-z_][a-z0-9_]*$.(óš¯Y
+npython:S1542G"QRename function "takeCommand" to match the regular expression ^[a-z_][a-z0-9_]*$.(—ğµ‘ıÿÿÿÿ
+=python:S1481U"%Remove the unused local variable "e".(òéäŒ
+kpython:S1542["SRename function "openResources" to match the regular expression ^[a-z_][a-z0-9_]*$.(¬Šë
+@python:S108q")Either remove or fill this block of code.(ã‘Û¾
