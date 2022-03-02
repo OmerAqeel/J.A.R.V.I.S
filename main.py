@@ -3,12 +3,15 @@ import speech_recognition as sr
 import datetime  # importing module for getting the date and time
 import wikipedia  # importing the wikipedia module
 import webbrowser  # to open any website on the browser
+import os  # to open any application in my system
+import pywhatkit  # To automate sending whatsapp messages
 
 from Bots import *
 from Links import *
 from personal import *
 from Reminders import *
 from possibleCommands import jarvisCloseCommands
+from Paths import *
 
 # Factory function to get reference to pyttsx3 and as I am on Mac, I will NSSpeachSynthesizer TTS engine.
 engine = pyttsx3.init('nsss')
@@ -57,7 +60,8 @@ Jarvis needs to greet me according to the right time. Also reminds me of the rem
         speak(" Sir its night time, please take rest.")
     speak("How may I help you Sir?")
     if num_Reminders >= 5:  # If I have typed in more than 5 reminders or 5 for myself in the text file, Jarvis will let me know about it.
-        speak(f"By the way sir, you have a really busy schedule today. I have {num_Reminders} reminders for you. Let me remind them to you sir.")
+        speak(
+            f"By the way sir, you have a really busy schedule today. I have {num_Reminders} reminders for you. Let me remind them to you sir.")
         speak(f"{readReminders}")
 
 
@@ -107,7 +111,7 @@ if __name__ == '__main__':
                 break
             else:
                 pass
-        if query in jarvisCloseCommands:                #Commanding Jarvis to stop running.
+        if query in jarvisCloseCommands:  # Commanding Jarvis to stop running.
             speak("Ok sir, shutting down. I'll see you later, have a great day")
             break
         if 'wikipedia' in query:
@@ -130,10 +134,9 @@ if __name__ == '__main__':
         elif "time" in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
-        elif "reminders" in query:
+        elif "reminders" in query:  # I usually write some reminders for myself in a txt file, which jarvis will read for me if i ask it to read.
             if num_Reminders != 0 and num_Reminders < 5:
-                speak(f"Yes sir, you have {num_Reminders} reminders.")
-                speak(f"{readReminders}")
+                speak(f"Yes sir, you have {num_Reminders} reminders ....... you have to {readReminders}")
             else:
                 speak("No sir, there is nothing for you in the reminders.")
         elif "university portal" in query:
@@ -144,3 +147,15 @@ if __name__ == '__main__':
             elif "yes" in query:
                 speak("Here you go sir ")
                 runUniversityBot(usernameStr, passwordStr)
+        elif "open discord" in query:
+            os.system("open -a discord")
+        elif "open eclipse" in query:
+            os.system("open -a eclipse")
+        elif "open spotify" in query:
+            os.system("open -a spotify")
+        elif "open whatsapp" in query:
+            speak("Sir whatsapp has been opened now, whom do you want me to send the message to ?")
+            person = takeCommand().lower()
+            speak("Ok sir, what is the message ?")
+            message = takeCommand()
+
